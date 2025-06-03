@@ -12,6 +12,9 @@ var bodyParser = require("body-parser");
 server.use(express.static(__dirname+"/public"));
 server.use(bodyParser.urlencoded({extended:true}));
 server.use(bodyParser.json());
+const Datastore = require('nedb-promises')
+let GameDB = Datastore.create(__dirname+'/game.db')
+
 
 // server.get("/", function (req, res) { //web root
 //     res.send("Hello, World!"); //回傳固定內容
@@ -21,10 +24,24 @@ server.use(bodyParser.json());
     console.log(req.query);
      res.send("req /md");
  });
+ server.post("/rank", (req, res) => {
+   GameDB.find({}, { _id: 0 }).sort({ "score": -1 }).limit(3).then((docs) => {
+      if (docs != null) {
+         res.send(docs);
+      }
+   })
+})
 
- server.post("/postscore", (req,res)=>{
-    console.log(req.body)
-
- });
- 
+ server.post("/postscore", (req, res) => {
+   console.log(req.body);
+   //save to db
+   GameDB.insert(req.body).then(doc => {
+      //find and sort and limit
+      GameDB.find({}, { _id: 0 }).sort({ "score": -1 }).limit(3).then((docs) => {
+         if (docs != null) {
+            res.send(docs);
+         }
+      })
+   });
+});
 server.listen(80);
