@@ -26,6 +26,7 @@ let GameDB = Datastore.create(__dirname+'/game.db')
  });
  server.post("/rank", (req, res) => {
    GameDB.find({}, { _id: 0 }).sort({ "score": -1 }).limit(3).then((docs) => {
+      console.log(req.body);
       if (docs != null) {
          res.send(docs);
       }
