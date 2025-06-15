@@ -16821,7 +16821,7 @@ const parentAsyncObjectsList = asyncObjectsList;
 {
 const asyncObjectsList = gdjs.LongLivedObjectsList.from(parentAsyncObjectsList);
 asyncObjectsList.backupLocalVariablesContainers(gdjs.MAinCode.localVariables);
-runtimeScene.getAsyncTasksManager().addTask(gdjs.evtTools.network.sendAwaitableAsyncRequest("http://127.0.0.1/postscore", gdjs.evtTools.network.variableStructureToJSON(runtimeScene.getGame().getVariables().getFromIndex(11)), "POST", "application/json", runtimeScene.getScene().getVariables().get("GameRack"), gdjs.VariablesContainer.badVariable), (runtimeScene) => (gdjs.MAinCode.asyncCallback22916764(runtimeScene, asyncObjectsList)));
+runtimeScene.getAsyncTasksManager().addTask(gdjs.evtTools.network.sendAwaitableAsyncRequest("/postscore", gdjs.evtTools.network.variableStructureToJSON(runtimeScene.getGame().getVariables().getFromIndex(11)), "POST", "application/json", runtimeScene.getScene().getVariables().get("GameRack"), gdjs.VariablesContainer.badVariable), (runtimeScene) => (gdjs.MAinCode.asyncCallback22916764(runtimeScene, asyncObjectsList)));
 }
 }
 

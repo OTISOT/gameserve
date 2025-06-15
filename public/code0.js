@@ -514,7 +514,7 @@ gdjs.MainMenuCode.eventsList15 = function(runtimeScene) {
 {
 const asyncObjectsList = new gdjs.LongLivedObjectsList();
 asyncObjectsList.backupLocalVariablesContainers(gdjs.MainMenuCode.localVariables);
-runtimeScene.getAsyncTasksManager().addTask(gdjs.evtTools.network.sendAwaitableAsyncRequest("http://127.0.0.1/rank", "", "POST", "application/json", runtimeScene.getScene().getVariables().getFromIndex(1), gdjs.VariablesContainer.badVariable), (runtimeScene) => (gdjs.MainMenuCode.asyncCallback24080436(runtimeScene, asyncObjectsList)));
+runtimeScene.getAsyncTasksManager().addTask(gdjs.evtTools.network.sendAwaitableAsyncRequest("/rank", "", "POST", "application/json", runtimeScene.getScene().getVariables().getFromIndex(1), gdjs.VariablesContainer.badVariable), (runtimeScene) => (gdjs.MainMenuCode.asyncCallback24080436(runtimeScene, asyncObjectsList)));
 }
 }
 
