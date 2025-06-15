@@ -25,12 +25,15 @@ let GameDB = Datastore.create(__dirname+'/game.db')
      res.send("req /md");
  });
  server.post("/rank", (req, res) => {
-   GameDB.find({}, { _id: 0 }).sort({ "score": -1 }).limit(3).then((docs) => {
-      console.log(req.body);
-      if (docs != null) {
-         res.send(docs);
-      }
-   })
+   GameDB.find({}, { _id: 0,name:1,score:1 }).sort({ "score": -1 }).limit(3).then((docs) => 
+    {
+      const titles = ["第一名", "第二名", "第三名"];
+      const result = docs.map((doc, index) => {
+         return `${titles[index]}: ${doc.name} 波數:${doc.score}`;
+      }).join(); // 以換行分隔
+      
+      res.send(result);
+    })
 })
 
  server.post("/postscore", (req, res) => {
